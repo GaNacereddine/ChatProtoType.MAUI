@@ -11,10 +11,8 @@ using Microsoft.UI.Xaml;
 using MauiPlatformView = System.Object;
 #endif
 
-
 using Microsoft.Maui.Handlers;
 using ChatProtoType.MAUI.Controls;
-using System.Diagnostics;
 using ChatProtoType.MAUI.Platforms.Shared;
 
 
@@ -26,14 +24,14 @@ namespace ChatProtoType.MAUI.Handlers
 #if WINDOWS
     public partial class PointerInputViewHandler 
     {
-        protected void HookInputEvents(PlatformView platformView)
+        protected void HookInputEvents(MauiPlatformView platformView)
         {
             platformView.PointerPressed += PlatformView_PointerPressed;
             platformView.PointerMoved += PlatformView_PointerMoved;
             platformView.PointerReleased += PlatformView_PointerReleased;
         }
 
-        protected void UnHookInputEvents(PlatformView platformView)
+        protected void UnHookInputEvents(MauiPlatformView platformView)
         {
             platformView.PointerPressed -= PlatformView_PointerPressed;
             platformView.PointerMoved -= PlatformView_PointerMoved;
@@ -49,13 +47,13 @@ namespace ChatProtoType.MAUI.Handlers
         private void PlatformView_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             var wPoint = e.GetCurrentPoint(sender as UIElement).Position;
-            PointerInputVirtualView.RaisePointerChanged(new(wPoint.X, wPoint.Y, PointerState.Up));
+            PointerInputVirtualView.RaisePointerChanged(new(wPoint.X, wPoint.Y, PointerState.Down));
         }
 
         private void PlatformView_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             var wPoint = e.GetCurrentPoint(sender as UIElement).Position;
-            PointerInputVirtualView.RaisePointerChanged(new(wPoint.X, wPoint.Y, PointerState.Down));
+            PointerInputVirtualView.RaisePointerChanged(new(wPoint.X, wPoint.Y, PointerState.Up));
         }
     }
 #endif
@@ -85,16 +83,6 @@ namespace ChatProtoType.MAUI.Handlers
             var touchX = e.Event.GetX();
             var touchY = e.Event.GetY();
 
-            /*if ((touchX > PlatformView.GetX() + PlatformView.Width) || (touchX < PlatformView.GetX()))
-            {
-                return;
-            }
-
-            if ((touchY > PlatformView.GetY() + PlatformView.Height) || (touchY < PlatformView.GetY()))
-            {
-                return;
-            }*/
-
             var point = new PointF(touchX / (float)DeviceDisplay.MainDisplayInfo.Density, touchY / (float)DeviceDisplay.MainDisplayInfo.Density);
 
             switch (e.Event.Action)
@@ -120,12 +108,12 @@ namespace ChatProtoType.MAUI.Handlers
 #if IOS || MACCATALYST
     public partial class PointerInputViewHandler 
     {
-        protected void HookInputEvents(PlatformView platformView)
+        protected void HookInputEvents(MauiPlatformView platformView)
         {
-            //platformView.AddObserver() += PlatformView_Touch;
+            //platformView. += PlatformView_Touch;
         }
 
-        protected void UnHookInputEvents(PlatformView platformView)
+        protected void UnHookInputEvents(MauiPlatformView platformView)
         {
             //platformView.Touch -= PlatformView_Touch;
         }

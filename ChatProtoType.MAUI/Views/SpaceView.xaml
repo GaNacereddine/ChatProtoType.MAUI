@@ -9,7 +9,7 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout x:Name="TestLayout" BackgroundColor="Red">
-        <c:PointerInputView x:Name="TestInput" HeightRequest="800" WidthRequest="300" BackgroundColor="White">
+        <c:PointerInputView x:Name="TestInput" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
             <Ellipse/>
         </c:PointerInputView>
     </AbsoluteLayout>

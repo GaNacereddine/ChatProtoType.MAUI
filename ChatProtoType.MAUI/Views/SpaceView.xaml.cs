@@ -52,7 +52,7 @@ public partial class SpaceView : ContentPage
     private PointerInputView CreateAvatar(int avatarValue)
     {
         var ellipse = new Ellipse() { WidthRequest = 50, HeightRequest = 50, Fill = Colors.Yellow,  };
-        var avatar = new PointerInputView() { HeightRequest = 50, WidthRequest = 50, BackgroundColor = Colors.Yellow, Content = ellipse };
+        var avatar = new PointerInputView() { HeightRequest = 50, WidthRequest = 50, Content = ellipse };
         avatar.PointerChanged += Avatar_PointerChanged;
         return avatar;
     }
