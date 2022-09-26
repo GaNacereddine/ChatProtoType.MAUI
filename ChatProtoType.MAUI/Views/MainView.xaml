@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatProtoType.MAUI.Views.MainView"
+             xmlns:viewmodel="clr-namespace:ChatProtoType.MAUI.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel />
+    </ContentPage.BindingContext>
+
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Testing Maui performance with styles"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Space view"
+                SemanticProperties.Hint="Go to space view"
+                HorizontalOptions="Center" 
+                Command="{Binding GoToSpace}"/>
+            
+            <Button
+                Text="Chat view"
+                SemanticProperties.Hint="Go to chat view"
+                HorizontalOptions="Center" 
+                Command="{Binding GoToChat}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
